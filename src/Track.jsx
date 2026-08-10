@@ -1,11 +1,13 @@
-import {useState} from 'react';
-function Track(){
-
+import React from 'react';
+{/*here we get track as its own track distructing prop */}
+function Track( {track} ){
     return(
      <div>
-        <h3>Song Name</h3>
-        <p>Artist Name | Album Name</p>
-        <button className="Track-action">+</button>
+        {/*here we have track to accses the const serachResult from app. */}
+      <h3>{track.name}</h3>
+      <p>{track.artist}</p> 
+      <p>{track.album}</p>  
+      <button>+</button>  
      </div>
     )
 };

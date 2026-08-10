@@ -4,9 +4,7 @@ function SearchBar(){
 
     return(
      <div>
-        <label htmlFor="search">Search</label>
-        <input id="search" type="text"/>
-        <button type='submit'>Search</button>
+
      </div>
     );
 };
