@@ -2,6 +2,7 @@ import {useState} from 'react';
 import SearchResults from './SearchResults';
 import SearchBar from './SearchBar';
 import PlayList from './Playlist';
+import './App.css';
 
 {/*the const searchResults will be passed to SearchResults as a distructing prop*/}
 const searchResultsMock = [
@@ -16,15 +17,16 @@ const playlistMock = [
 function App(){
   return(
     <div>
-      <h1>Jammmin909g</h1>
+      <h1>Jammming</h1>
       <br/>
       <label htmlFor="search"></label>
       <input id="search" name="search" type="text" />
       {/* here we render searchResult in app and we gave it the distructing {userSearchResult} prop 
       that will be passed to SearchResults component file*/}
+      <div className="App-playlist">
       <SearchResults userSearchResult={searchResultsMock} />
       <PlayList list={playlistMock}/>
-
+      </div>
 </div>
   )
 }
