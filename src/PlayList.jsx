@@ -6,7 +6,6 @@ function PlayList( { list, playlistprop, onRemove, updateName, saveList} ){
 function playListRename(e){
   updateName(e.target.value)
 }
-console.log('3️⃣ PlayList rendered with name:', playlistprop); /* 👈 Tracks what name PlayList receives */
     return(
      <div>
         <label htmlFor="custom-paly-list"></label>

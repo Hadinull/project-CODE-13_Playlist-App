@@ -1,13 +1,21 @@
 import {useState} from 'react';
 
-function SearchBar(){
+function SearchBar( { onSearch } ){
+    const [term, setTerm] = useState('')
+    function handleTermChange(e){
+        setTerm(e.target.value)
+    }
+    function Search() {
+        onSearch(term)
+    }
+
 
     return(
      <div>
       <label htmlFor="search"></label>
-      <input id="search" name="search" type="text" />
+      <input onChange={handleTermChange} id="search" name="search" type="text" />
       <br/>
-      <button>Search</button>
+      <button onClick={Search}>Search</button>
      </div>
     );
 };

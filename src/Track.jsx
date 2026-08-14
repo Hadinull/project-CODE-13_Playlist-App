@@ -1,6 +1,6 @@
 import React from 'react';
 {/*Track receives a single track object and the onAdd handler */}
-function Track( {track, onAdd, onRemove} ){
+function Track( { track, onAdd, onRemove } ){
     return(
      <div>
         {/*here we have track to accses the const serachResult from app. */}
@@ -14,4 +14,3 @@ function Track( {track, onAdd, onRemove} ){
     )
 };
 export default Track;
-

@@ -8,8 +8,6 @@ function TrackList( {tracks, onAdd, onRemove}){
       {tracks?.map((song)=>(
         <Track key={song.id} track={ song } onAdd={ onAdd } onRemove={ onRemove }/>
       ))
-      
-      
       }
      </div>
     )

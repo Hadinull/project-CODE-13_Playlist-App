@@ -2,6 +2,7 @@ import {useState} from 'react';
 import SearchResults from './SearchResults';
 import SearchBar from './SearchBar';
 import PlayList from './Playlist';
+import Spotify from './Spotify';
 import './App.css';
 
 {/* Mock search results passed to SearchResults as the "userSearchResult" prop*/}
@@ -23,10 +24,12 @@ function App(){
   const [playlistTracks, setPlaylistTracks] = useState(playlistMock);
   const [playlistName, setPlaylistName] = useState('New Playlist');
 
+  function search(term){
+    Spotify.search(term);
+  }
+
 function savePlaylist(){
-  console.log('1️⃣ Save button clicked!'); /* 👈 Confirms the function ran */
   const trackUris = playlistTracks.map((track) => track.uri)
-  console.log('2️⃣ Extracted URIs:', trackUris); /* 👈 Shows your URIs array */
   setPlaylistName('New Playlist');
    setPlaylistTracks([]);
 }
@@ -83,7 +86,7 @@ setPlaylistTracks(newPlaylist);
     <div>
       <h1>Jammming</h1>
       <br/>
-      <SearchBar />
+      <SearchBar onSearch={search}/>
 
       <div className="App-playlist">
       <SearchResults userSearchResult={searchResultsMock} onAdd={addTrack} />  {/* Render SearchResults with mock data and pass down addTrack handler */}
