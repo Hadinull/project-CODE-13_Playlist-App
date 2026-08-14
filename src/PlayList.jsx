@@ -1,19 +1,19 @@
 import {useState} from 'react';
 import TrackList from './TrackList';
 {/* PlayList receives "list" (tracks) and "playlistprop" (name) from App */}
-function PlayList( { list, playlistprop, onRemove, updateName } ){
+function PlayList( { list, playlistprop, onRemove, updateName, saveList} ){
 
 function playListRename(e){
   updateName(e.target.value)
 }
-
+console.log('3️⃣ PlayList rendered with name:', playlistprop); /* 👈 Tracks what name PlayList receives */
     return(
      <div>
         <label htmlFor="custom-paly-list"></label>
-        <input onChange={playListRename} id="custom-paly-list" type="text" defaultValue={playlistprop}/>
+        <input onChange={playListRename} id="custom-paly-list" type="text" value={playlistprop}/>
         {/* Render TrackList with the playlist tracks */}
         <TrackList tracks={ list } onRemove={ onRemove } />
-        <button>Save to Spotify</button>
+        <button onClick={saveList}>Save to Spotify</button>
      </div>
     )
 };

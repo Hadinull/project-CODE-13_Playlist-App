@@ -6,18 +6,37 @@ import './App.css';
 
 {/* Mock search results passed to SearchResults as the "userSearchResult" prop*/}
 const searchResultsMock = [
-  { id: 1, name: 'Tiny Dancer', artist: 'Elton John', album: 'Madman Across the Water' },
-  { id: 2, name: 'Stronger', artist: 'Kanye West', album: 'Graduation' }
+  { id: 1, name: 'Tiny Dancer', artist: 'Elton John', album: 'Madman Across the Water', uri: 'spotify:track:1' },
+  { id: 2, name: 'Stronger', artist: 'Kanye West', album: 'Graduation', uri: 'spotify:track:2' }
 ];
 {/*Mock playlist tracks passed to PlayList as the "list" prop*/}
 const playlistMock = [
-  { id: 3, name: 'Hotel California', artist: 'Eagles', album: 'Hotel California' },
-  { id: 4, name: 'Superstition', artist: 'Stevie Wonder', album: 'Talking Book' }
+  { id: 3, name: 'Hotel California', artist: 'Eagles', album: 'Hotel California', uri: 'spotify:track:3' },
+  { id: 4, name: 'Superstition', artist: 'Stevie Wonder', album: 'Talking Book', uri: 'spotify:track:4' }
 ];
 
+
+
+
 function App(){
+
   const [playlistTracks, setPlaylistTracks] = useState(playlistMock);
   const [playlistName, setPlaylistName] = useState('New Playlist');
+
+function savePlaylist(){
+  console.log('1️⃣ Save button clicked!'); /* 👈 Confirms the function ran */
+  const trackUris = playlistTracks.map((track) => track.uri)
+  console.log('2️⃣ Extracted URIs:', trackUris); /* 👈 Shows your URIs array */
+  setPlaylistName('New Playlist');
+   setPlaylistTracks([]);
+}
+{/* save playlist comment
+  💡 How this works step-by-step:
+  1. playlistTracks.map() loops through every song in your playlist 🔄
+  2. (track) is a temporary parameter representing the current song object 🎵
+  3. track.uri extracts ONLY the uri string (like 'spotify:track:1') 🏷️
+  4. trackUris becomes a new array of strings: ['spotify:track:1', 'spotify:track:2'] 📦
+  */}
 
 function updatePlaylistName(name){
   setPlaylistName(name)
@@ -69,7 +88,7 @@ setPlaylistTracks(newPlaylist);
       <div className="App-playlist">
       <SearchResults userSearchResult={searchResultsMock} onAdd={addTrack} />  {/* Render SearchResults with mock data and pass down addTrack handler */}
 
-      <PlayList updateName={updatePlaylistName} list={playlistTracks} playlistprop={playlistName} onRemove={removeTrack}/>  {/* Render PlayList with current playlist tracks and playlist name*/}
+      <PlayList saveList={savePlaylist} updateName={updatePlaylistName} list={playlistTracks} playlistprop={playlistName} onRemove={removeTrack}/>  {/* Render PlayList with current playlist tracks and playlist name*/}
       </div>
 
 
