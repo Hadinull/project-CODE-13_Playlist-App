@@ -19,6 +19,9 @@ function App(){
   const [playlistTracks, setPlaylistTracks] = useState(playlistMock);
   const [playlistName, setPlaylistName] = useState('New Playlist');
 
+function updatePlaylistName(name){
+  setPlaylistName(name)
+}
 
 
    {/*Add a new track to the playlist if it's not already included*/}
@@ -66,7 +69,7 @@ setPlaylistTracks(newPlaylist);
       <div className="App-playlist">
       <SearchResults userSearchResult={searchResultsMock} onAdd={addTrack} />  {/* Render SearchResults with mock data and pass down addTrack handler */}
 
-      <PlayList list={playlistTracks} playlistprop={playlistName} onRemove={removeTrack}/>  {/* Render PlayList with current playlist tracks and playlist name*/}
+      <PlayList updateName={updatePlaylistName} list={playlistTracks} playlistprop={playlistName} onRemove={removeTrack}/>  {/* Render PlayList with current playlist tracks and playlist name*/}
       </div>
 
 
