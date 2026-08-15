@@ -23,16 +23,19 @@ function App(){
 
   const [playlistTracks, setPlaylistTracks] = useState(playlistMock);
   const [playlistName, setPlaylistName] = useState('New Playlist');
-
-  function search(term){
-    Spotify.search(term);
+  const [realSearchResults, setRealSearchResults] = useState([])
+  function search(term) {
+    Spotify.search(term).then((results) => {
+      setRealSearchResults(results);
+    });
   }
-
 function savePlaylist(){
   const trackUris = playlistTracks.map((track) => track.uri)
   setPlaylistName('New Playlist');
    setPlaylistTracks([]);
 }
+
+
 {/* save playlist comment
   💡 How this works step-by-step:
   1. playlistTracks.map() loops through every song in your playlist 🔄
@@ -89,7 +92,7 @@ setPlaylistTracks(newPlaylist);
       <SearchBar onSearch={search}/>
 
       <div className="App-playlist">
-      <SearchResults userSearchResult={searchResultsMock} onAdd={addTrack} />  {/* Render SearchResults with mock data and pass down addTrack handler */}
+      <SearchResults userSearchResult={realSearchResults} onAdd={addTrack} />  {/* Render SearchResults with mock data and pass down addTrack handler */}
 
       <PlayList saveList={savePlaylist} updateName={updatePlaylistName} list={playlistTracks} playlistprop={playlistName} onRemove={removeTrack}/>  {/* Render PlayList with current playlist tracks and playlist name*/}
       </div>
