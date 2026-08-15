@@ -7,8 +7,8 @@ function SearchBar( { onSearch } ){
     }
     function Search() {
         onSearch(term)
+        console.log("🔘 SearchBar button was clicked! Term is:", term);
     }
-
 
     return(
      <div>

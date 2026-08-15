@@ -1,31 +1,35 @@
-let accessToken;
-const clientId = '';
-const redirectUri = 'http://localhost:5173/';
-
 const Spotify = {
   async search(term) {
-    const url = 'https://spotifystefan-skliarovv1.p.rapidapi.com/search';
-    
+    if (!term) return [];
+
+    const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(term)}`;
+
     const options = {
-      method: 'POST',
-      headers: { 
-        'x-rapidapi-key': import.meta.env.VITE_RAPIDAPI_KEY, /*key  */
-        'x-rapidapi-host': 'spotifystefan-skliarovv1.p.rapidapi.com',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }, 
-      body: new URLSearchParams({
-        q: term, 
-        accessToken: '' 
-      })    
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': import.meta.env.VITE_RAPIDAPI_KEY,
+        'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com'
+      }
     };
-  
-try {
+
+    try {
       const response = await fetch(url, options);
-      const result = await response.json(); 
-      return result; 
-      
+      const result = await response.json();
+
+      if (!result.data) {
+        return [];
+      }
+
+      return result.data.map((track) => ({
+        id: track.id,
+        name: track.title,
+        artist: track.artist.name,
+        album: track.album.title,
+        uri: track.link
+      }));
     } catch (error) {
       console.error(error);
+      return [];
     }
   }
 };

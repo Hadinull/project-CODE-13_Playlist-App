@@ -1,4 +1,12 @@
+
 .App-playlist {
-  display: flex; 
-  justify-content: space-around;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  color: #34d399;
 }

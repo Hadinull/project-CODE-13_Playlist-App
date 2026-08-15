@@ -17,18 +17,23 @@ const playlistMock = [
 ];
 
 
-
+console.log(" App.jsx is awake and loaded in Chrome!");
 
 function App(){
 
   const [playlistTracks, setPlaylistTracks] = useState(playlistMock);
   const [playlistName, setPlaylistName] = useState('New Playlist');
-  const [realSearchResults, setRealSearchResults] = useState([])
-  function search(term) {
-    Spotify.search(term).then((results) => {
-      setRealSearchResults(results);
-    });
-  }
+  const [realSearchResults, setRealSearchResults] = useState([]);
+
+function search(term) {
+  Spotify.search(term).then((results) => {
+    console.log("1️⃣ App.jsx heard the search! Term is:", term);
+    setRealSearchResults(results);
+    console.log("2️⃣ Arrived data:", results);
+  });
+}
+
+
 function savePlaylist(){
   const trackUris = playlistTracks.map((track) => track.uri)
   setPlaylistName('New Playlist');
