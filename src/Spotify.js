@@ -20,7 +20,7 @@ const Spotify = {
         return [];
       }
 
-      return result.data.map((track) => ({
+      return result.data.slice(0, 5).map((track) => ({
         id: track.id,
         name: track.title,
         artist: track.artist.name,
