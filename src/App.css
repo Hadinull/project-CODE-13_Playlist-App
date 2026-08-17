@@ -69,18 +69,27 @@ input[type="text"]:focus {
 }
 
 #custom-paly-list {
-  max-width: 100%;
-  font-size: 1.3rem;
-  font-weight: 700;
-  text-align: center;
-  background: transparent;
-  border: 1px solid transparent;
+  width: 100%;
+  max-width: 380px;
+  display: block;
+  margin: 0 auto 16px;
+  padding: 14px 22px;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #14141c;
+  color: #f5f5f7;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#custom-paly-list::placeholder {
+  color: #6b6b76;
 }
 
 #custom-paly-list:focus {
-  background: #14141c;
-  border-color: #22d3ee;
-  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.15);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
 }
 
 button {

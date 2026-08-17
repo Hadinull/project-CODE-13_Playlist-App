@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import SearchResults from './SearchResults';
 import SearchBar from './SearchBar';
-import PlayList from './Playlist';
+import PlayList from './PlayList';
 import Spotify from './Spotify';
 import './App.css';
 
@@ -20,7 +20,7 @@ const playlistMock = [
 console.log(" App.jsx is awake and loaded in Chrome!");
 
 function App(){
-
+  const [isSaving, setIsSaving] = useState(false)
   const [playlistTracks, setPlaylistTracks] = useState(playlistMock);
   const [playlistName, setPlaylistName] = useState('New Playlist');
   const [realSearchResults, setRealSearchResults] = useState([]);
@@ -35,11 +35,15 @@ function search(term) {
 
 
 function savePlaylist(){
+  setIsSaving(true);
+  console.log("The <p> tag loading screen is working! 🎧");
   const trackUris = playlistTracks.map((track) => track.uri)
+  setTimeout(() => {
   setPlaylistName('New Playlist');
    setPlaylistTracks([]);
+   setIsSaving(false);
+}, 3000)
 }
-
 
 {/* save playlist comment
   💡 How this works step-by-step:
@@ -99,7 +103,7 @@ setPlaylistTracks(newPlaylist);
       <div className="App-playlist">
       <SearchResults userSearchResult={realSearchResults} onAdd={addTrack} />  {/* Render SearchResults with mock data and pass down addTrack handler */}
 
-      <PlayList saveList={savePlaylist} updateName={updatePlaylistName} list={playlistTracks} playlistprop={playlistName} onRemove={removeTrack}/>  {/* Render PlayList with current playlist tracks and playlist name*/}
+      <PlayList isSaving={ isSaving } saveList={savePlaylist} updateName={updatePlaylistName} list={playlistTracks} playlistprop={playlistName} onRemove={removeTrack}/>  {/* Render PlayList with current playlist tracks and playlist name*/}
       </div>
 
 
